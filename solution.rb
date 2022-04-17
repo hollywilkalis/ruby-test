@@ -13,14 +13,26 @@ def counter
     
     # words.each { |word| frequency[word] +=1 }
 
-    # replaceing the single word count from above with counting three word phrases
+    # replacing the single word count from above with counting three word phrases
     while words.size >= 3
         frequency["#{words[0]} #{words[1]} #{words[2]}"] += 1
         words.shift(1)
       end
     
-    #outputting count results as a code check
-    puts frequency
+    # outputting count results as a code check
+    # puts frequency
+
+    #now take results and sort by the count
+    frequencyList = frequency.each { |phrase|
+      if frequency.has_key?(phrase)
+        frequency[phrase] = frequency[phrase] + 1
+      end
+    }
+
+    #I am spitting out entire list here - will deal with limiting later
+    frequencyList.sort{|a,b| a[1]<=>b[1]}.each { |elem|
+    puts "\"#{elem[0]}\" has #{elem[1]} occurrences"}
+
 end
 
 counter
