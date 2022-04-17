@@ -1,6 +1,6 @@
 def counter
     # grab file - hard coded to start with
-    book = File.read("moby-dick.txt")
+    book = File.read("loren-ipsum.txt")
 
     # strip out case
     text = book.downcase
@@ -13,26 +13,22 @@ def counter
     
     # words.each { |word| frequency[word] +=1 }
 
-    # replacing the single word count from above with counting three word phrases
+    # replacing the single word count from above with code to create three word phrases
     while words.size >= 3
         frequency["#{words[0]} #{words[1]} #{words[2]}"] += 1
         words.shift(1)
       end
-    
-    # outputting count results as a code check
-    # puts frequency
 
-    #now take results and sort by the count
+    # creating the list of counts
     frequencyList = frequency.each { |phrase|
       if frequency.has_key?(phrase)
         frequency[phrase] = frequency[phrase] + 1
       end
     }
 
-    #I am spitting out entire list here - will deal with limiting later
-    frequencyList.sort{|a,b| a[1]<=>b[1]}.each { |elem|
-    puts "\"#{elem[0]}\" has #{elem[1]} occurrences"}
-
+    #I am spitting out entire list here and also reversing the sort - still deal with limiting the results
+    sortedList = frequencyList.sort{|a,b| b[1]<=>a[1]}.each { |elem|
+    puts "#{elem[1]} occurrences of \"#{elem[0]}\""}
 end
 
 counter
