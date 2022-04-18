@@ -1,4 +1,4 @@
-## Support Software Engineer Challenge
+### Support Software Engineer Challenge
 ### Holly Wilkalis
 
 **About the Project**
