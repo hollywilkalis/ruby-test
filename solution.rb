@@ -20,25 +20,26 @@ def counter
     # creating a new Hash which will store the resulting count
     frequency = Hash.new(0)
     
-    # words.each { |word| frequency[word] +=1 }
-
-    # replacing the single word count from above with code to create three word phrases
+    # creating three word phrases
     while words.size >= 3
         frequency["#{words[0]} #{words[1]} #{words[2]}"] += 1
         words.shift(1)
       end
 
-    # creating the list of counts
+    # creating the hash containing the phrases and counts
     frequencyList = frequency.each { |phrase|
       if frequency.has_key?(phrase)
         frequency[phrase] = frequency[phrase] + 1
       end
     }
 
-    # I am spitting out entire list here and also reversing the sort
-    # still need to refine to limit the results to top 100
-    sortedList = frequencyList.sort{|a,b| b[1]<=>a[1]}.each { |elem|
-    puts "#{elem[1]} occurrences of \"#{elem[0]}\""}
+    # taking the list and spititng out the first 100 entries to the console
+    # value is hard coded now could be changed to a variable that's based on user input 
+    sortedList = frequencyList.sort{|a,b| b[1]<=>a[1]}.each_with_index { |elem, index|
+      puts "#{elem[1]} occurrences of \"#{elem[0]}\""
+      break if index >= 100
+    }
+
 end
 
 counter
